@@ -2,8 +2,8 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Agenda</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda Acadêmica</title>
 
 <style>
 * {
@@ -50,20 +50,7 @@ select, input {
   font-size: 15px;
 }
 
-/* BOTÕES */
-.calendar-btn {
-  width: 100%;
-  padding: 16px;
-  border-radius: 18px;
-  border: none;
-  font-size: 15px;
-  font-weight: 600;
-  background: linear-gradient(135deg, #ffe0ec, #e8d8ff);
-  color: #7a0050;
-  margin-bottom: 14px;
-  cursor: pointer;
-}
-
+/* BOTÃO ADD */
 button.add {
   width: 100%;
   padding: 16px;
@@ -92,13 +79,8 @@ button.add {
   word-break: break-word;
 }
 
-.event strong {
-  font-size: 15px;
-}
-
 .event small {
   color: #666;
-  font-size: 13px;
 }
 
 .delete {
@@ -114,7 +96,7 @@ button.add {
 .prova { border-left: 6px solid #ff9f43; }
 .tarefa { border-left: 6px solid #2ecc71; }
 
-/* BOTÃO VOLTAR */
+/* FOOTER */
 .nav-footer {
   margin-top: 40px;
 }
@@ -128,21 +110,6 @@ button.add {
   color: white;
   cursor: pointer;
   box-shadow: 0 14px 32px rgba(255,95,143,0.35);
-  transition: transform 0.25s ease;
-}
-
-.nav-btn:hover {
-  transform: translateY(-4px);
-}
-
-.nav-btn .icon {
-  font-size: 28px;
-  margin-bottom: 6px;
-}
-
-.nav-btn .title {
-  font-size: 15px;
-  font-weight: 600;
 }
 </style>
 </head>
@@ -163,8 +130,8 @@ button.add {
 
     <input id="title" placeholder="Descrição do compromisso">
 
-    <input type="date" id="date" hidden>
-    <button class="calendar-btn" onclick="openCalendar()">📅 Selecionar data</button>
+    <!-- CALENDÁRIO VISÍVEL -->
+    <input type="date" id="date">
 
     <input type="time" id="time">
 
@@ -173,21 +140,15 @@ button.add {
 
   <div id="list"></div>
 
-  <!-- BOTÃO VOLTAR -->
   <div class="nav-footer">
     <div class="nav-btn" onclick="location.href='index.html'">
-      <div class="icon">📖</div>
-      <div class="title">Voltar para Calendário Acadêmico</div>
+      📖 Voltar para Calendário Acadêmico
     </div>
   </div>
 
 </div>
 
 <script>
-function openCalendar() {
-  document.getElementById("date").showPicker();
-}
-
 function load() {
   const data = JSON.parse(localStorage.getItem("agenda")) || [];
   const list = document.getElementById("list");
