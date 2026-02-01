@@ -116,7 +116,7 @@ body {
   line-height: 1.6;
 }
 
-/* BOTÃO FINAL DE NAVEGAÇÃO */
+/* BOTÃO FINAL */
 .nav-footer {
   margin: 40px 0 20px;
 }
@@ -178,7 +178,6 @@ body {
     <div class="progress-text" id="todayDate"></div>
   </div>
 
-  <!-- BOTÃO FINAL -->
   <div class="nav-footer">
     <div class="nav-btn" onclick="location.href='agenda.html'">
       <div class="icon">🗓</div>
@@ -189,8 +188,13 @@ body {
 </div>
 
 <script>
-const DATA_INICIO = new Date("2025-08-19");
-const DATA_FORMATURA = new Date("2029-07-20");
+function criarDataLocal(dataStr) {
+  const [ano, mes, dia] = dataStr.split("-").map(Number);
+  return new Date(ano, mes - 1, dia);
+}
+
+const DATA_INICIO = criarDataLocal("2025-08-19");
+const DATA_FORMATURA = criarDataLocal("2029-07-20");
 
 const PERIODOS = [
   { numero: 2, inicio: "2026-02-24", fim: "2026-06-30" },
@@ -207,9 +211,14 @@ function formatarData(data) {
 }
 
 function atualizarApp() {
-  const hoje = new Date();
+  const agora = new Date();
+  const hoje = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate());
 
-  const diasRestantes = Math.ceil((DATA_FORMATURA - hoje) / 86400000);
+  const diasRestantes = Math.max(
+    0,
+    Math.floor((DATA_FORMATURA - hoje) / 86400000) - 1
+  );
+
   const progresso = Math.min(
     100,
     Math.round(((hoje - DATA_INICIO) / (DATA_FORMATURA - DATA_INICIO)) * 100)
@@ -218,10 +227,11 @@ function atualizarApp() {
   let textoPeriodo = "Você está em período de férias.";
 
   for (const p of PERIODOS) {
-    const inicio = new Date(p.inicio);
-    const fim = new Date(p.fim);
+    const inicio = criarDataLocal(p.inicio);
+    const fim = criarDataLocal(p.fim);
+
     if (hoje >= inicio && hoje <= fim) {
-      const dias = Math.ceil((fim - hoje) / 86400000);
+      const dias = Math.floor((fim - hoje) / 86400000);
       textoPeriodo = `${p.numero}º período em andamento.<br>Faltam <strong>${dias}</strong> dias para o encerramento.`;
       break;
     }
@@ -235,6 +245,16 @@ function atualizarApp() {
 }
 
 atualizarApp();
+
+/* 🔄 Atualiza automaticamente à meia-noite */
+const agora = new Date();
+const msAteMeiaNoite =
+  new Date(agora.getFullYear(), agora.getMonth(), agora.getDate() + 1) - agora;
+
+setTimeout(() => {
+  atualizarApp();
+  setInterval(atualizarApp, 86400000);
+}, msAteMeiaNoite);
 </script>
 
 <script>
