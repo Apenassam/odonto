@@ -72,6 +72,7 @@ button.add {
   box-shadow: 0 8px 22px rgba(0,0,0,0.08);
   display: flex;
   gap: 12px;
+  align-items: center;
 }
 
 .event-content {
@@ -79,8 +80,13 @@ button.add {
   word-break: break-word;
 }
 
+.event strong {
+  font-size: 15px;
+}
+
 .event small {
   color: #666;
+  font-size: 13px;
 }
 
 .delete {
@@ -95,6 +101,14 @@ button.add {
 .lab { border-left: 6px solid #5f9cff; }
 .prova { border-left: 6px solid #ff9f43; }
 .tarefa { border-left: 6px solid #2ecc71; }
+
+/* EMPTY STATE */
+.empty {
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  padding: 30px 10px;
+}
 
 /* FOOTER */
 .nav-footer {
@@ -130,9 +144,7 @@ button.add {
 
     <input id="title" placeholder="Descrição do compromisso">
 
-    <!-- CALENDÁRIO VISÍVEL -->
     <input type="date" id="date">
-
     <input type="time" id="time">
 
     <button class="add" onclick="add()">Adicionar compromisso</button>
@@ -151,8 +163,26 @@ button.add {
 <script>
 function load() {
   const data = JSON.parse(localStorage.getItem("agenda")) || [];
+
+  // ORDENA por data + hora
+  data.sort((a, b) => {
+    const da = new Date(`${a.date}T${a.time}`);
+    const db = new Date(`${b.date}T${b.time}`);
+    return da - db;
+  });
+
   const list = document.getElementById("list");
   list.innerHTML = "";
+
+  if (data.length === 0) {
+    list.innerHTML = `
+      <div class="empty">
+        💗 Nenhum compromisso ainda<br>
+        Sua agenda está tranquila por enquanto
+      </div>
+    `;
+    return;
+  }
 
   data.forEach((e, i) => {
     const div = document.createElement("div");
@@ -160,7 +190,7 @@ function load() {
     div.innerHTML = `
       <div class="event-content">
         <strong>${e.title}</strong><br>
-        <small>${e.date} • ${e.time}</small>
+        <small>${formatarData(e.date)} • ${e.time}</small>
       </div>
       <button class="delete" onclick="removeItem(${i})">🗑️</button>
     `;
@@ -193,6 +223,11 @@ function removeItem(index) {
   data.splice(index, 1);
   localStorage.setItem("agenda", JSON.stringify(data));
   load();
+}
+
+function formatarData(data) {
+  const [y, m, d] = data.split("-");
+  return `${d}/${m}/${y}`;
 }
 
 load();
