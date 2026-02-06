@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Horários e Matérias</title>
+
+<meta name="theme-color" content="#ff5f8f">
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #f7f7fb, #f1f2f6);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.app {
+  width: 100%;
+  max-width: 430px;
+  padding: 20px 16px 40px;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #ff5f8f, #c77dff);
+  border-radius: 24px;
+  padding: 24px;
+  color: white;
+  margin-bottom: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.header span {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* HOJE */
+.today {
+  background: white;
+  border-radius: 22px;
+  padding: 18px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+}
+
+.today-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #b0005f;
+  margin-bottom: 6px;
+}
+
+.today-text {
+  font-size: 14px;
+  color: #444;
+}
+
+/* DIA CARD */
+.day-card {
+  background: white;
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.day-card.today-highlight {
+  border: 2px solid #ff5f8f;
+}
+
+.day-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #b0005f;
+  margin-bottom: 10px;
+}
+
+/* MATÉRIAS */
+.subject {
+  padding: 12px 14px;
+  border-radius: 16px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.subject span {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* TIPOS */
+.teorica { background: #fff0f6; }
+.pratica { background: #eef4ff; }
+.clinica { background: #f0fff6; }
+
+/* SEM AULA */
+.no-class {
+  font-size: 14px;
+  color: #777;
+  font-style: italic;
+}
+
+/* MATÉRIAS */
+.section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #b0005f;
+  margin: 30px 0 14px;
+}
+
+.subject-card {
+  background: white;
+  border-radius: 22px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.subject-card span {
+  font-size: 12px;
+  color: #666;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 40px;
+}
+
+.back-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #ff5f8f, #c77dff);
+  border-radius: 24px;
+  padding: 22px;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 14px 32px rgba(255,95,143,0.35);
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="header">
+    <h1>📚 Horários e Matérias</h1>
+    <span>Organização fixa do semestre</span>
+  </div>
+
+  <!-- HOJE -->
+  <div class="today">
+    <div class="today-title">📅 Hoje você tem</div>
+    <div class="today-text" id="todayText"></div>
+  </div>
+
+  <!-- SEGUNDA -->
+  <div class="day-card" data-day="1">
+    <div class="day-title">Segunda-feira</div>
+    <div class="subject pratica">
+      Prótese Dentária Fixa
+      <span>13:40 às 16:50</span>
+    </div>
+    <div class="subject teorica">
+      Ortodontia Preventiva
+      <span>16:50 às 18:50</span>
+    </div>
+  </div>
+
+  <!-- TERÇA -->
+  <div class="day-card" data-day="2">
+    <div class="day-title">Terça-feira</div>
+    <div class="subject teorica">
+      Odontologia Legal e Deontologia
+      <span>08:50 às 10:50</span>
+    </div>
+    <div class="subject teorica">
+      Estomatologia – Propedêutica
+      <span>10:50 às 11:40</span>
+    </div>
+    <div class="subject pratica">
+      Radiologia Odontológica
+      <span>13:40 às 17:40</span>
+    </div>
+  </div>
+
+  <!-- QUARTA -->
+  <div class="day-card" data-day="3">
+    <div class="day-title">Quarta-feira</div>
+    <div class="no-class">Sem aulas presenciais 🌷</div>
+  </div>
+
+  <!-- QUINTA -->
+  <div class="day-card" data-day="4">
+    <div class="day-title">Quinta-feira</div>
+    <div class="subject pratica">
+      Anatomia Dentária e Escultura
+      <span>15:50 às 18:50</span>
+    </div>
+  </div>
+
+  <!-- SEXTA -->
+  <div class="day-card" data-day="5">
+    <div class="day-title">Sexta-feira</div>
+    <div class="no-class">Sem aulas presenciais ☕</div>
+  </div>
+
+  <!-- MATÉRIAS -->
+  <div class="section-title">🦷 Matérias do período</div>
+
+  <div class="subject-card">
+    Prótese Dentária Fixa<br>
+    <span>Prática • Presencial</span>
+  </div>
+
+  <div class="subject-card">
+    Ortodontia Preventiva<br>
+    <span>Teórica • Presencial</span>
+  </div>
+
+  <div class="subject-card">
+    Radiologia Odontológica e Imaginologia<br>
+    <span>Teórica + Prática • Presencial</span>
+  </div>
+
+  <div class="subject-card">
+    Anatomia Dentária e Escultura<br>
+    <span>Prática • Presencial</span>
+  </div>
+
+  <!-- VOLTAR -->
+  <div class="footer">
+    <div class="back-btn" onclick="location.href='index.html'">
+      ⬅ Voltar para o início
+    </div>
+  </div>
+
+</div>
+
+<script>
+const hoje = new Date().getDay();
+const cards = document.querySelectorAll(".day-card");
+
+cards.forEach(card => {
+  if (Number(card.dataset.day) === hoje) {
+    card.classList.add("today-highlight");
+    document.getElementById("todayText").innerText =
+      card.innerText.replace(/\n/g, " ");
+  }
+});
+
+if (!document.getElementById("todayText").innerText) {
+  document.getElementById("todayText").innerText =
+    "Hoje você não tem aulas presenciais 💗";
+}
+</script>
+
+</body>
+</html>
