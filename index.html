@@ -5,14 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Odontologia</title>
 
-<link rel="manifest" href="manifest.json">
-
 <meta name="theme-color" content="#ff5f8f">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-<link rel="apple-touch-icon" href="icon-192.png">
-<link rel="icon" sizes="192x192" href="icon-192.png">
 
 <style>
 * {
@@ -31,51 +25,30 @@ body {
 .app {
   width: 100%;
   max-width: 430px;
-  padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom);
+  padding: 20px;
 }
 
 /* HEADER */
 .header {
   background: linear-gradient(135deg, #ff5f8f, #c77dff);
-  border-radius: 20px;
-  padding: 26px;
+  border-radius: 22px;
+  padding: 24px;
   color: white;
-  margin: 20px 0 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  margin-bottom: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
 }
 
 .header h1 {
   margin: 0;
   font-size: 24px;
-  font-weight: 700;
 }
 
 .header span {
   font-size: 13px;
-  opacity: 0.85;
-}
-
-/* MAIN CARD */
-.main-card {
-  background: linear-gradient(135deg, #ff5f8f, #ff85a2);
-  color: white;
-  border-radius: 26px;
-  padding: 30px;
-  margin-bottom: 25px;
-  box-shadow: 0 18px 40px rgba(255,95,143,0.35);
-}
-
-.days {
-  font-size: 70px;
-  font-weight: 800;
-}
-
-.days-label {
-  font-size: 14px;
   opacity: 0.9;
 }
 
-/* CARDS */
+/* CARD BASE */
 .card {
   background: white;
   border-radius: 24px;
@@ -84,30 +57,56 @@ body {
   box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
-.progress-title {
-  font-size: 12px;
+/* DIAS */
+.days-card {
+  background: linear-gradient(135deg, #ff5f8f, #ff85a2);
+  color: white;
+  border-radius: 26px;
+  padding: 28px;
+  margin-bottom: 22px;
+  box-shadow: 0 18px 40px rgba(255,95,143,0.35);
+}
+
+.days {
+  font-size: 64px;
+  font-weight: 800;
+}
+
+.days-label {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.grid-card {
+  background: white;
+  border-radius: 22px;
+  padding: 22px;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.grid-card span {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+/* TITLES */
+.title {
+  font-size: 13px;
+  font-weight: 600;
   color: #b0005f;
   margin-bottom: 10px;
-  font-weight: 600;
-}
-
-.progress-bar-bg {
-  background: #ffe0ec;
-  height: 10px;
-  border-radius: 10px;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #ff5f8f, #c77dff);
-  transition: width 1s ease;
-}
-
-.progress-text {
-  margin-top: 10px;
-  font-size: 13px;
-  color: #555;
 }
 
 .text {
@@ -116,36 +115,19 @@ body {
   line-height: 1.6;
 }
 
-/* BOTÃO FINAL */
-.nav-footer {
-  margin: 40px 0 20px;
+/* PROGRESSO */
+.progress-bg {
+  background: #ffe0ec;
+  height: 10px;
+  border-radius: 10px;
 }
 
-.nav-btn {
-  width: 100%;
-  background: linear-gradient(135deg, #ff5f8f, #c77dff);
-  border-radius: 24px;
-  padding: 22px;
-  text-align: center;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 14px 32px rgba(255,95,143,0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.nav-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 38px rgba(255,95,143,0.45);
-}
-
-.nav-btn .icon {
-  font-size: 28px;
-  margin-bottom: 6px;
-}
-
-.nav-btn .title {
-  font-size: 15px;
-  font-weight: 600;
+.progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff5f8f, #c77dff);
+  border-radius: 10px;
+  transition: width 0.8s ease;
 }
 </style>
 </head>
@@ -154,113 +136,101 @@ body {
 
 <div class="app">
 
+  <!-- HEADER -->
   <div class="header">
-    <h1>Odontologia</h1>
-    <span>Acompanhamento acadêmico da graduação</span>
+    <h1 id="greeting">Olá 💗</h1>
+    <span id="subGreeting"></span>
   </div>
 
-  <div class="main-card">
+  <!-- DIAS -->
+  <div class="days-card">
     <div class="days" id="daysLeft">--</div>
-    <div class="days-label">dias restantes para a conclusão do curso</div>
+    <div class="days-label">dias para a formatura</div>
   </div>
 
-  <div class="card">
-    <div class="progress-title">Progresso da graduação</div>
-    <div class="progress-bar-bg">
-      <div class="progress-bar" id="progressBar"></div>
+  <!-- BOTÕES -->
+  <div class="grid">
+    <div class="grid-card" onclick="location.href='agenda.html'">
+      <span>🗓</span>
+      Agenda Acadêmica
     </div>
-    <div class="progress-text" id="progressText">--%</div>
-  </div>
 
-  <div class="card">
-    <div class="progress-title">Situação atual</div>
-    <div class="text" id="periodInfo"></div>
-    <div class="progress-text" id="todayDate"></div>
-  </div>
-
-  <div class="nav-footer">
-    <div class="nav-btn" onclick="location.href='agenda.html'">
-      <div class="icon">🗓</div>
-      <div class="title">Ir para Agenda Acadêmica</div>
+    <div class="grid-card" onclick="location.href='horarios.html'">
+      <span>📚</span>
+      Horários e Matérias
     </div>
+  </div>
+
+  <!-- PROGRESSO -->
+  <div class="card">
+    <div class="title">📈 Progresso da graduação</div>
+    <div class="progress-bg">
+      <div class="progress" id="progressBar"></div>
+    </div>
+    <div class="text" id="progressText"></div>
+  </div>
+
+  <!-- COMUNICADO -->
+  <div class="card">
+    <div class="title">📌 Comunicado de hoje</div>
+    <div class="text" id="dailyNotice"></div>
   </div>
 
 </div>
 
 <script>
-function criarDataLocal(dataStr) {
-  const [ano, mes, dia] = dataStr.split("-").map(Number);
-  return new Date(ano, mes - 1, dia);
+function criarDataLocal(d) {
+  const [a,m,di] = d.split("-").map(Number);
+  return new Date(a, m-1, di);
 }
 
 const DATA_INICIO = criarDataLocal("2025-08-19");
 const DATA_FORMATURA = criarDataLocal("2029-07-20");
 
-const PERIODOS = [
-  { numero: 2, inicio: "2026-02-24", fim: "2026-06-30" },
-  { numero: 3, inicio: "2026-08-01", fim: "2026-12-20" },
-  { numero: 4, inicio: "2027-02-01", fim: "2027-07-20" },
-  { numero: 5, inicio: "2027-08-01", fim: "2027-12-20" },
-  { numero: 6, inicio: "2028-02-01", fim: "2028-07-20" },
-  { numero: 7, inicio: "2028-08-01", fim: "2028-12-20" },
-  { numero: 8, inicio: "2029-02-01", fim: "2029-07-20" }
-];
-
-function formatarData(data) {
-  return data.toLocaleDateString("pt-BR");
-}
+const HORARIO_FIXO = {
+  0: "Domingo de descanso 🌷",
+  1: "🦷 Prótese Dentária Fixa e Ortodontia Preventiva",
+  2: "🦷 Odontologia Legal, Estomatologia e Radiologia",
+  3: "☕ Dia sem aulas presenciais",
+  4: "🦷 Anatomia Dentária e Escultura",
+  5: "🌸 Sem aulas presenciais",
+  6: "Sábado de recarregar as energias ✨"
+};
 
 function atualizarApp() {
-  const agora = new Date();
-  const hoje = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate());
+  const hoje = new Date();
 
-  const diasRestantes = Math.max(
-    0,
-    Math.floor((DATA_FORMATURA - hoje) / 86400000) - 1
-  );
+  // saudação
+  const hora = hoje.getHours();
+  const greeting =
+    hora < 12 ? "Bom dia, futura doutora 💗" :
+    hora < 18 ? "Boa tarde, futura doutora 💗" :
+    "Boa noite, futura doutora 💗";
 
+  document.getElementById("greeting").innerText = greeting;
+  document.getElementById("subGreeting").innerText =
+    "Você está construindo seu sonho 🦷✨";
+
+  // dias restantes
+  const dias = Math.max(0, Math.floor((DATA_FORMATURA - hoje) / 86400000));
+  document.getElementById("daysLeft").innerText = dias;
+
+  // progresso
   const progresso = Math.min(
     100,
     Math.round(((hoje - DATA_INICIO) / (DATA_FORMATURA - DATA_INICIO)) * 100)
   );
 
-  let textoPeriodo = "Você está em período de férias.";
+  document.getElementById("progressBar").style.width = progresso + "%";
+  document.getElementById("progressText").innerText =
+    progresso + "% do curso concluído";
 
-  for (const p of PERIODOS) {
-    const inicio = criarDataLocal(p.inicio);
-    const fim = criarDataLocal(p.fim);
-
-    if (hoje >= inicio && hoje <= fim) {
-      const dias = Math.floor((fim - hoje) / 86400000);
-      textoPeriodo = `${p.numero}º período em andamento.<br>Faltam <strong>${dias}</strong> dias para o encerramento.`;
-      break;
-    }
-  }
-
-  daysLeft.innerText = diasRestantes;
-  progressBar.style.width = progresso + "%";
-  progressText.innerText = progresso + "% concluído";
-  periodInfo.innerHTML = textoPeriodo;
-  todayDate.innerText = `Hoje: ${formatarData(hoje)}`;
+  // comunicado
+  document.getElementById("dailyNotice").innerText =
+    HORARIO_FIXO[hoje.getDay()];
 }
 
 atualizarApp();
-
-/* 🔄 Atualiza automaticamente à meia-noite */
-const agora = new Date();
-const msAteMeiaNoite =
-  new Date(agora.getFullYear(), agora.getMonth(), agora.getDate() + 1) - agora;
-
-setTimeout(() => {
-  atualizarApp();
-  setInterval(atualizarApp, 86400000);
-}, msAteMeiaNoite);
-</script>
-
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
 </script>
 
 </body>
