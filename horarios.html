@@ -1,275 +1,707 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
 <title>Horários e Matérias</title>
 
 <meta name="theme-color" content="#ff5f8f">
 
+
 <style>
-* {
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+*{
+box-sizing:border-box;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-body {
-  margin: 0;
-  background: linear-gradient(180deg, #f7f7fb, #f1f2f6);
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
+
+body{
+
+margin:0;
+background:linear-gradient(180deg,#f7f7fb,#f1f2f6);
+display:flex;
+justify-content:center;
+min-height:100vh;
+
 }
 
-.app {
-  width: 100%;
-  max-width: 430px;
-  padding: 20px 16px 40px;
+
+.app{
+
+width:100%;
+max-width:430px;
+padding:20px 16px 40px;
+
 }
+
 
 /* HEADER */
-.header {
-  background: linear-gradient(135deg, #ff5f8f, #c77dff);
-  border-radius: 24px;
-  padding: 24px;
-  color: white;
-  margin-bottom: 20px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+
+
+.header{
+
+background:linear-gradient(135deg,#ff5f8f,#c77dff);
+border-radius:24px;
+padding:24px;
+color:white;
+margin-bottom:20px;
+box-shadow:0 12px 30px rgba(0,0,0,.18);
+
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 22px;
+
+.header h1{
+
+margin:0;
+font-size:22px;
+
 }
 
-.header span {
-  font-size: 13px;
-  opacity: 0.85;
+
+.header span{
+
+font-size:13px;
+opacity:.85;
+
 }
+
+
 
 /* HOJE */
-.today {
-  background: white;
-  border-radius: 22px;
-  padding: 18px;
-  margin-bottom: 24px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+
+
+.today{
+
+background:white;
+border-radius:22px;
+padding:18px;
+margin-bottom:24px;
+box-shadow:0 8px 22px rgba(0,0,0,.08);
+
 }
 
-.today-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: #b0005f;
-  margin-bottom: 6px;
+
+.today-title{
+
+font-size:13px;
+font-weight:700;
+color:#b0005f;
+
 }
 
-.today-text {
-  font-size: 14px;
-  color: #444;
+
+.today-text{
+
+font-size:14px;
+color:#444;
+
 }
 
-/* DIA CARD */
-.day-card {
-  background: white;
-  border-radius: 24px;
-  padding: 20px;
-  margin-bottom: 18px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+
+
+/* GRADE */
+
+
+.day-card{
+
+background:white;
+border-radius:24px;
+padding:20px;
+margin-bottom:18px;
+box-shadow:0 8px 24px rgba(0,0,0,.08);
+
 }
 
-.day-card.today-highlight {
-  border: 2px solid #ff5f8f;
+
+.day-title{
+
+font-size:15px;
+font-weight:700;
+color:#b0005f;
+margin-bottom:10px;
+
 }
 
-.day-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: #b0005f;
-  margin-bottom: 10px;
+
+.subject{
+
+padding:12px 14px;
+border-radius:16px;
+margin-bottom:10px;
+font-size:14px;
+
 }
 
-/* MATÉRIAS */
-.subject {
-  padding: 12px 14px;
-  border-radius: 16px;
-  margin-bottom: 10px;
-  font-size: 14px;
+
+.subject span{
+
+display:block;
+font-size:12px;
+color:#666;
+margin-top:4px;
+
 }
 
-.subject span {
-  display: block;
-  font-size: 12px;
-  color: #666;
-  margin-top: 2px;
+
+
+.teorica{
+
+background:#fff0f6;
+
 }
 
-/* TIPOS */
-.teorica { background: #fff0f6; }
-.pratica { background: #eef4ff; }
-.clinica { background: #f0fff6; }
 
-/* SEM AULA */
-.no-class {
-  font-size: 14px;
-  color: #777;
-  font-style: italic;
+.pratica{
+
+background:#eef4ff;
+
 }
 
-/* MATÉRIAS */
-.section-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: #b0005f;
-  margin: 30px 0 14px;
+
+.clinica{
+
+background:#f0fff6;
+
 }
 
-.subject-card {
-  background: white;
-  border-radius: 22px;
-  padding: 16px;
-  margin-bottom: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+
+.no-class{
+
+font-size:14px;
+color:#777;
+font-style:italic;
+
 }
 
-.subject-card span {
-  font-size: 12px;
-  color: #666;
+
+
+/* EDITAR */
+
+
+.section-title{
+
+font-size:14px;
+font-weight:700;
+color:#b0005f;
+margin:30px 0 14px;
+
 }
 
-/* FOOTER */
-.footer {
-  margin-top: 40px;
+
+.subject-card{
+
+background:white;
+border-radius:22px;
+padding:16px;
+margin-bottom:12px;
+box-shadow:0 6px 18px rgba(0,0,0,.08);
+
 }
 
-.back-btn {
-  width: 100%;
-  background: linear-gradient(135deg, #ff5f8f, #c77dff);
-  border-radius: 24px;
-  padding: 22px;
-  text-align: center;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 14px 32px rgba(255,95,143,0.35);
+
+
+input,
+select,
+button{
+
+width:100%;
+padding:12px;
+margin-bottom:10px;
+border-radius:14px;
+border:1px solid #ddd;
+font-size:14px;
+
 }
+
+
+
+button{
+
+background:linear-gradient(135deg,#ff5f8f,#c77dff);
+color:white;
+border:none;
+font-weight:600;
+cursor:pointer;
+
+}
+
+
+
+/* BOTÃO VOLTAR */
+
+
+.footer{
+
+margin-top:40px;
+
+}
+
+
+
+.back-btn{
+
+width:100%;
+background:linear-gradient(135deg,#ff5f8f,#c77dff);
+border-radius:24px;
+padding:22px;
+text-align:center;
+color:white;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 14px 32px rgba(255,95,143,.35);
+
+}
+
+
 </style>
+
 </head>
+
+
 
 <body>
 
+
 <div class="app">
 
-  <div class="header">
-    <h1>📚 Horários e Matérias</h1>
-    <span>Organização fixa do semestre</span>
-  </div>
 
-  <!-- HOJE -->
-  <div class="today">
-    <div class="today-title">📅 Hoje você tem</div>
-    <div class="today-text" id="todayText"></div>
-  </div>
+<div class="header">
 
-  <!-- SEGUNDA -->
-  <div class="day-card" data-day="1">
-    <div class="day-title">Segunda-feira</div>
-    <div class="subject pratica">
-      Prótese Dentária Fixa
-      <span>13:40 às 16:50</span>
-    </div>
-    <div class="subject teorica">
-      Ortodontia Preventiva
-      <span>16:50 às 18:50</span>
-    </div>
-  </div>
+<h1>📚 Horários e Matérias</h1>
 
-  <!-- TERÇA -->
-  <div class="day-card" data-day="2">
-    <div class="day-title">Terça-feira</div>
-    <div class="subject teorica">
-      Odontologia Legal e Deontologia
-      <span>08:50 às 10:50</span>
-    </div>
-    <div class="subject teorica">
-      Estomatologia – Propedêutica
-      <span>10:50 às 11:40</span>
-    </div>
-    <div class="subject pratica">
-      Radiologia Odontológica
-      <span>13:40 às 17:40</span>
-    </div>
-  </div>
-
-  <!-- QUARTA -->
-  <div class="day-card" data-day="3">
-    <div class="day-title">Quarta-feira</div>
-    <div class="no-class">Sem aulas presenciais 🌷</div>
-  </div>
-
-  <!-- QUINTA -->
-  <div class="day-card" data-day="4">
-    <div class="day-title">Quinta-feira</div>
-    <div class="subject pratica">
-      Anatomia Dentária e Escultura
-      <span>15:50 às 18:50</span>
-    </div>
-  </div>
-
-  <!-- SEXTA -->
-  <div class="day-card" data-day="5">
-    <div class="day-title">Sexta-feira</div>
-    <div class="no-class">Sem aulas presenciais ☕</div>
-  </div>
-
-  <!-- MATÉRIAS -->
-  <div class="section-title">🦷 Matérias do período</div>
-
-  <div class="subject-card">
-    Prótese Dentária Fixa<br>
-    <span>Prática • Presencial</span>
-  </div>
-
-  <div class="subject-card">
-    Ortodontia Preventiva<br>
-    <span>Teórica • Presencial</span>
-  </div>
-
-  <div class="subject-card">
-    Radiologia Odontológica e Imaginologia<br>
-    <span>Teórica + Prática • Presencial</span>
-  </div>
-
-  <div class="subject-card">
-    Anatomia Dentária e Escultura<br>
-    <span>Prática • Presencial</span>
-  </div>
-
-  <!-- VOLTAR -->
-  <div class="footer">
-    <div class="back-btn" onclick="location.href='index.html'">
-      ⬅ Voltar para o início
-    </div>
-  </div>
+<span>
+Organização fixa do semestre
+</span>
 
 </div>
 
-<script>
-const hoje = new Date().getDay();
-const cards = document.querySelectorAll(".day-card");
 
-cards.forEach(card => {
-  if (Number(card.dataset.day) === hoje) {
-    card.classList.add("today-highlight");
-    document.getElementById("todayText").innerText =
-      card.innerText.replace(/\n/g, " ");
-  }
+
+<div class="today">
+
+<div class="today-title">
+📅 Hoje você tem
+</div>
+
+<div class="today-text" id="todayText">
+Carregando...
+</div>
+
+</div>
+
+
+
+<!-- A GRADE VAI APARECER AQUI AUTOMATICAMENTE -->
+
+<div id="grade"></div>
+
+
+
+<div class="section-title">
+
+✏️ Editar minha grade
+
+</div>
+
+
+
+<div class="subject-card">
+
+
+<input 
+id="materia" 
+placeholder="Nome da matéria">
+
+
+<input 
+id="horario" 
+placeholder="Horário (ex: 08:00 às 10:00)">
+
+
+
+<select id="dia">
+
+<option value="1">
+Segunda-feira
+</option>
+
+<option value="2">
+Terça-feira
+</option>
+
+<option value="3">
+Quarta-feira
+</option>
+
+<option value="4">
+Quinta-feira
+</option>
+
+<option value="5">
+Sexta-feira
+</option>
+
+
+</select>
+
+
+
+<select id="tipo">
+
+<option value="teorica">
+Teórica
+</option>
+
+<option value="pratica">
+Prática
+</option>
+
+<option value="clinica">
+Clínica
+</option>
+
+
+</select>
+
+
+
+<button onclick="adicionarMateria()">
+
+➕ Adicionar matéria
+
+</button>
+
+
+</div>
+
+
+
+<div class="footer">
+
+<div class="back-btn" onclick="location.href='index.html'">
+
+⬅ Voltar para o início
+
+</div>
+
+</div>
+
+
+</div>
+<script>
+
+
+let materias = JSON.parse(localStorage.getItem("materias")) || [
+
+{
+dia:"1",
+nome:"Prótese Dentária Fixa",
+horario:"13:40 às 16:50",
+tipo:"pratica"
+},
+
+{
+dia:"1",
+nome:"Ortodontia Preventiva",
+horario:"16:50 às 18:50",
+tipo:"teorica"
+},
+
+{
+dia:"2",
+nome:"Odontologia Legal e Deontologia",
+horario:"08:50 às 10:50",
+tipo:"teorica"
+},
+
+{
+dia:"2",
+nome:"Estomatologia – Propedêutica",
+horario:"10:50 às 11:40",
+tipo:"teorica"
+},
+
+{
+dia:"2",
+nome:"Radiologia Odontológica e Imaginologia",
+horario:"13:40 às 17:40",
+tipo:"pratica"
+},
+
+{
+dia:"4",
+nome:"Anatomia Dentária e Escultura",
+horario:"15:50 às 18:50",
+tipo:"pratica"
+}
+
+];
+
+
+
+const dias = {
+
+1:"Segunda-feira",
+2:"Terça-feira",
+3:"Quarta-feira",
+4:"Quinta-feira",
+5:"Sexta-feira"
+
+};
+
+
+
+function mostrarGrade(){
+
+
+let area=document.getElementById("grade");
+
+area.innerHTML="";
+
+
+
+for(let dia in dias){
+
+
+let card=document.createElement("div");
+
+card.className="day-card";
+
+
+
+let conteudo=`
+
+<div class="day-title">
+${dias[dia]}
+</div>
+
+`;
+
+
+
+let aulas=materias.filter(
+m=>m.dia==dia
+);
+
+
+
+if(aulas.length===0){
+
+
+conteudo+=`
+
+<div class="no-class">
+Sem aulas presenciais 🌷
+</div>
+
+`;
+
+
+}
+
+else{
+
+
+aulas.forEach((aula,index)=>{
+
+
+conteudo+=`
+
+<div class="subject ${aula.tipo}">
+
+<strong>
+${aula.nome}
+</strong>
+
+
+<span>
+${aula.horario}
+</span>
+
+
+<button onclick="removerMateria(${index})">
+
+❌ Remover
+
+</button>
+
+
+</div>
+
+`;
+
+
 });
 
-if (!document.getElementById("todayText").innerText) {
-  document.getElementById("todayText").innerText =
-    "Hoje você não tem aulas presenciais 💗";
+
 }
+
+
+
+card.innerHTML=conteudo;
+
+area.appendChild(card);
+
+
+}
+
+
+}
+
+
+
+function adicionarMateria(){
+
+
+
+let nova={
+
+
+dia:document.getElementById("dia").value,
+
+
+nome:document.getElementById("materia").value,
+
+
+horario:document.getElementById("horario").value,
+
+
+tipo:document.getElementById("tipo").value
+
+
+
+};
+
+
+
+if(nova.nome==="" || nova.horario===""){
+
+
+alert("Digite a matéria e o horário");
+
+
+return;
+
+
+}
+
+
+
+materias.push(nova);
+
+
+
+localStorage.setItem(
+
+"materias",
+
+JSON.stringify(materias)
+
+);
+
+
+
+mostrarGrade();
+
+
+
+document.getElementById("materia").value="";
+
+document.getElementById("horario").value="";
+
+
+}
+
+
+
+
+function removerMateria(index){
+
+
+materias.splice(index,1);
+
+
+
+localStorage.setItem(
+
+"materias",
+
+JSON.stringify(materias)
+
+);
+
+
+
+mostrarGrade();
+
+
+}
+
+
+
+
+function mostrarHoje(){
+
+
+let hoje=new Date().getDay();
+
+
+let texto=document.getElementById("todayText");
+
+
+
+if(hoje===0 || hoje===6){
+
+texto.innerHTML="Sem aulas hoje ☕";
+
+return;
+
+}
+
+
+
+let aulas=materias.filter(
+
+m=>Number(m.dia)===hoje
+
+);
+
+
+
+if(aulas.length===0){
+
+texto.innerHTML="Sem aulas hoje 🌷";
+
+return;
+
+}
+
+
+
+texto.innerHTML=aulas.map(a=>
+
+`${a.nome} (${a.horario})`
+
+).join("<br>");
+
+
+
+}
+
+
+
+mostrarGrade();
+
+mostrarHoje();
+
+
 </script>
 
+
 </body>
+
 </html>
