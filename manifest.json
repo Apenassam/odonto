@@ -7,12 +7,12 @@
   "theme_color": "#E56793",
   "icons": [
     {
-      "src": "Odonto.png",
+      "src": "odonto.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "Odonto.png",
+      "src": "odonto.png",
       "sizes": "512x512",
       "type": "image/png"
     }
