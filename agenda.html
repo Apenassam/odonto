@@ -1,237 +1,1097 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agenda Acadêmica</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Agenda Odonto</title>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 
 <style>
-* {
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+
+*{
+
+box-sizing:border-box;
+
+-webkit-tap-highlight-color:transparent;
+
 }
 
-body {
-  margin: 0;
-  background: #f7f7fb;
-  display: flex;
-  justify-content: center;
+
+
+html{
+
+scroll-behavior:smooth;
+
 }
 
-.app {
-  width: 100%;
-  max-width: 430px;
-  padding: 20px 16px 40px;
+
+
+body{
+
+margin:0;
+
+min-height:100vh;
+
+background:linear-gradient(180deg,#fff9fc,#f3eef7);
+
+display:flex;
+
+justify-content:center;
+
+padding:
+env(safe-area-inset-top)
+env(safe-area-inset-right)
+env(safe-area-inset-bottom)
+env(safe-area-inset-left);
+
 }
+
+
+
+.app{
+
+width:100%;
+
+max-width:430px;
+
+min-height:100vh;
+
+padding:18px 16px 35px;
+
+}
+
+
 
 /* HEADER */
-.header {
-  font-size: 22px;
-  font-weight: 700;
-  color: #b0005f;
-  margin-bottom: 18px;
+
+
+.header{
+
+background:linear-gradient(135deg,#ff5f8f,#c77dff);
+
+border-radius:32px;
+
+padding:28px 24px;
+
+color:white;
+
+box-shadow:
+0 18px 40px rgba(199,125,255,.35);
+
+margin-bottom:22px;
+
 }
+
+
+
+.header h1{
+
+font-family:'Playfair Display',serif;
+
+font-size:30px;
+
+line-height:1.2;
+
+margin:0 0 8px;
+
+}
+
+
+
+.header p{
+
+font-size:13px;
+
+margin:0;
+
+opacity:.9;
+
+}
+
+
+
+/* PROXIMO */
+
+
+.next-card{
+
+background:white;
+
+border-radius:28px;
+
+padding:22px;
+
+margin-bottom:20px;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.08);
+
+}
+
+
+
+.next-title{
+
+font-size:13px;
+
+font-weight:600;
+
+color:#b0005f;
+
+margin-bottom:10px;
+
+}
+
+
+
+#next{
+
+font-size:14px;
+
+color:#555;
+
+line-height:1.7;
+
+}
+
+
 
 /* FORM */
-.form {
-  background: white;
-  border-radius: 26px;
-  padding: 18px;
-  margin-bottom: 24px;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+
+
+.form{
+
+background:white;
+
+border-radius:30px;
+
+padding:22px;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.08);
+
 }
 
-select, input {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 14px;
-  border-radius: 16px;
-  border: 1px solid #e0e0e0;
-  font-size: 15px;
+
+
+label{
+
+display:block;
+
+font-size:12px;
+
+font-weight:500;
+
+color:#999;
+
+margin-bottom:6px;
+
 }
 
-/* BOTÃO ADD */
-button.add {
-  width: 100%;
-  padding: 16px;
-  border-radius: 20px;
-  border: none;
-  font-size: 15px;
-  font-weight: 600;
-  background: linear-gradient(135deg, #ff5f8f, #c77dff);
-  color: white;
-  cursor: pointer;
+
+
+input,
+select{
+
+width:100%;
+
+height:52px;
+
+padding:0 15px;
+
+border-radius:18px;
+
+border:1px solid #eee;
+
+background:#fff;
+
+font-size:16px;
+
+margin-bottom:15px;
+
+outline:none;
+
 }
+
+
+
+input:focus,
+select:focus{
+
+border-color:#ff5f8f;
+
+}
+
+
+
+/* BOTAO */
+
+
+.add{
+
+width:100%;
+
+height:56px;
+
+border:none;
+
+border-radius:22px;
+
+background:
+linear-gradient(135deg,#ff5f8f,#c77dff);
+
+color:white;
+
+font-size:15px;
+
+font-weight:600;
+
+box-shadow:
+0 12px 25px rgba(255,95,143,.35);
+
+}
+
+
+
+/* TITULO */
+
+
+.section-title{
+
+font-family:'Playfair Display',serif;
+
+font-size:24px;
+
+color:#b0005f;
+
+margin:28px 0 16px;
+
+}
+
+
 
 /* EVENTOS */
-.event {
-  background: white;
-  border-radius: 22px;
-  padding: 16px;
-  margin-bottom: 14px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
-  display: flex;
-  gap: 12px;
-  align-items: center;
+
+
+.event{
+
+background:white;
+
+border-radius:26px;
+
+padding:18px;
+
+margin-bottom:15px;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+box-shadow:
+0 8px 25px rgba(0,0,0,.08);
+
 }
 
-.event-content {
-  flex: 1;
-  word-break: break-word;
+
+
+.event-content{
+
+flex:1;
+
+min-width:0;
+
 }
 
-.event strong {
-  font-size: 15px;
+
+
+.event strong{
+
+font-size:15px;
+
+display:block;
+
+word-break:break-word;
+
 }
 
-.event small {
-  color: #666;
-  font-size: 13px;
+
+
+.event small{
+
+font-size:12px;
+
+color:#777;
+
+line-height:1.7;
+
 }
 
-.delete {
-  background: none;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
+
+
+.delete{
+
+width:38px;
+
+height:38px;
+
+border:none;
+
+border-radius:50%;
+
+background:#fff0f6;
+
+font-size:18px;
+
 }
 
-/* CORES */
-.clinica { border-left: 6px solid #ff5f8f; }
-.lab { border-left: 6px solid #5f9cff; }
-.prova { border-left: 6px solid #ff9f43; }
-.tarefa { border-left: 6px solid #2ecc71; }
 
-/* EMPTY STATE */
-.empty {
-  text-align: center;
-  color: #999;
-  font-size: 14px;
-  padding: 30px 10px;
+
+.clinica{
+
+border-left:6px solid #ff5f8f;
+
 }
 
+
+
+.lab{
+
+border-left:6px solid #6ca8ff;
+
+}
+
+
+
+.prova{
+
+border-left:6px solid #ffb347;
+
+}
+
+
+
+.tarefa{
+
+border-left:6px solid #70d18c;
+
+}
+
+
+
+.empty{
+
+text-align:center;
+
+padding:40px 15px;
+
+color:#aaa;
+
+font-size:14px;
+
+}
+
+
+ 
 /* FOOTER */
-.nav-footer {
-  margin-top: 40px;
+
+
+.nav-footer{
+
+margin-top:40px;
+
+padding-bottom:20px;
+
 }
 
-.nav-btn {
-  width: 100%;
-  background: linear-gradient(135deg, #ff5f8f, #c77dff);
-  border-radius: 24px;
-  padding: 22px;
-  text-align: center;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 14px 32px rgba(255,95,143,0.35);
+
+
+.nav-btn{
+
+width:100%;
+
+height:60px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:
+
+linear-gradient(135deg,#ff5f8f,#c77dff);
+
+border-radius:28px;
+
+color:white;
+
+font-weight:600;
+
+font-size:14px;
+
+box-shadow:
+
+0 14px 32px rgba(255,95,143,.35);
+
 }
+
+
+
+/* ANIMAÇÕES */
+
+
+.event,
+.next-card,
+.form{
+
+animation:
+
+aparecer .35s ease;
+
+}
+
+
+
+@keyframes aparecer{
+
+from{
+
+opacity:0;
+
+transform:translateY(10px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+
+
+/* CELULARES PEQUENOS */
+
+
+@media(max-width:360px){
+
+
+.app{
+
+padding:15px 12px 30px;
+
+}
+
+
+.header{
+
+padding:24px 20px;
+
+border-radius:28px;
+
+}
+
+
+.header h1{
+
+font-size:26px;
+
+}
+
+
+.section-title{
+
+font-size:22px;
+
+}
+
+
+.event{
+
+padding:15px;
+
+}
+
+
+}
+
+
+
 </style>
+
+
 </head>
+
 
 <body>
 
+
 <div class="app">
 
-  <div class="header">📅 Agenda acadêmica</div>
 
-  <div class="form">
-    <select id="type">
-      <option value="clinica">🦷 Clínica</option>
-      <option value="lab">🧪 Laboratório</option>
-      <option value="prova">📝 Prova</option>
-      <option value="tarefa">📚 Tarefa</option>
-    </select>
 
-    <input id="title" placeholder="Descrição do compromisso">
+<div class="header">
 
-    <input type="date" id="date">
-    <input type="time" id="time">
 
-    <button class="add" onclick="add()">Adicionar compromisso</button>
-  </div>
+<h1>
+🦷 Agenda Odonto
+</h1>
 
-  <div id="list"></div>
 
-  <div class="nav-footer">
-    <div class="nav-btn" onclick="location.href='index.html'">
-      📖 Voltar para Calendário Acadêmico
-    </div>
-  </div>
+<p>
+Organização acadêmica do semestre
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="next-card">
+
+
+<div class="next-title">
+
+✨ Próximo compromisso
+
+</div>
+
+
+
+<div id="next">
+
+Nenhum compromisso marcado 💗
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="form">
+
+
+
+<label>
+
+Categoria
+
+</label>
+
+
+
+<select id="type">
+
+
+<option value="clinica">
+
+🦷 Clínica
+
+</option>
+
+
+
+<option value="lab">
+
+🧪 Laboratório
+
+</option>
+
+
+
+<option value="prova">
+
+📝 Prova
+
+</option>
+
+
+
+<option value="tarefa">
+
+📚 Tarefa
+
+</option>
+
+
+
+</select>
+
+
+
+
+
+
+<label>
+
+Descrição
+
+</label>
+
+
+<input
+
+id="title"
+
+placeholder="Ex: Levar instrumental para Prótese"
+
+>
+
+
+
+
+
+<label>
+
+Data
+
+</label>
+
+
+<input
+
+type="date"
+
+id="date"
+
+>
+
+
+
+
+
+<label>
+
+Horário
+
+</label>
+
+
+<input
+
+type="time"
+
+id="time"
+
+>
+
+
+
+
+
+
+<button class="add" onclick="add()">
+
+
+✨ Adicionar compromisso
+
+
+</button>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="section-title">
+
+📌 Minha agenda
+
+</div>
+
+
+
+
+
+<div id="list"></div>
+
+
+
+
+
+
+
+<div class="nav-footer">
+
+
+<div class="nav-btn" onclick="location.href='index.html'">
+
+
+📖 Voltar para Calendário Acadêmico
+
+
+</div>
+
+
+</div>
+
+
+
+
 
 </div>
 
 <script>
-function load() {
-  const data = JSON.parse(localStorage.getItem("agenda")) || [];
 
-  // ORDENA por data + hora
-  data.sort((a, b) => {
-    const da = new Date(`${a.date}T${a.time}`);
-    const db = new Date(`${b.date}T${b.time}`);
-    return da - db;
-  });
 
-  const list = document.getElementById("list");
-  list.innerHTML = "";
+function carregarAgenda(){
 
-  if (data.length === 0) {
-    list.innerHTML = `
-      <div class="empty">
-        💗 Nenhum compromisso ainda<br>
-        Sua agenda está tranquila por enquanto
-      </div>
-    `;
-    return;
-  }
 
-  data.forEach((e, i) => {
-    const div = document.createElement("div");
-    div.className = `event ${e.type}`;
-    div.innerHTML = `
-      <div class="event-content">
-        <strong>${e.title}</strong><br>
-        <small>${formatarData(e.date)} • ${e.time}</small>
-      </div>
-      <button class="delete" onclick="removeItem(${i})">🗑️</button>
-    `;
-    list.appendChild(div);
-  });
+let dados = JSON.parse(localStorage.getItem("agenda")) || [];
+
+
+
+dados.sort((a,b)=>{
+
+
+let dataA = new Date(`${a.date}T${a.time}`);
+
+let dataB = new Date(`${b.date}T${b.time}`);
+
+
+return dataA - dataB;
+
+
+});
+
+
+
+const lista=document.getElementById("list");
+
+
+lista.innerHTML="";
+
+
+
+mostrarProximo(dados);
+
+
+
+if(dados.length===0){
+
+
+lista.innerHTML=`
+
+<div class="empty">
+
+💗 Nenhum compromisso ainda
+
+<br>
+
+Sua agenda está tranquila por enquanto
+
+</div>
+
+`;
+
+return;
+
+
 }
 
-function add() {
-  const item = {
-    type: type.value,
-    title: title.value.trim(),
-    date: date.value,
-    time: time.value
-  };
 
-  if (!item.title || !item.date || !item.time) {
-    alert("Preenche tudo 💗");
-    return;
-  }
 
-  const data = JSON.parse(localStorage.getItem("agenda")) || [];
-  data.push(item);
-  localStorage.setItem("agenda", JSON.stringify(data));
-  load();
-  title.value = "";
+
+dados.forEach((item,index)=>{
+
+
+let card=document.createElement("div");
+
+
+card.className=`event ${item.type}`;
+
+
+
+card.innerHTML=`
+
+<div class="event-content">
+
+
+<strong>
+
+${item.title}
+
+</strong>
+
+
+<small>
+
+📅 ${dataCompleta(item.date)}
+
+<br>
+
+⏰ ${item.time}
+
+</small>
+
+
+</div>
+
+
+
+<button class="delete" onclick="remover(${index})">
+
+🗑️
+
+</button>
+
+
+`;
+
+
+
+lista.appendChild(card);
+
+
+
+});
+
+
+
 }
 
-function removeItem(index) {
-  const data = JSON.parse(localStorage.getItem("agenda")) || [];
-  data.splice(index, 1);
-  localStorage.setItem("agenda", JSON.stringify(data));
-  load();
+
+
+
+function adicionar(){
+
+
+
+let item={
+
+
+type:document.getElementById("type").value,
+
+
+title:document.getElementById("title").value.trim(),
+
+
+date:document.getElementById("date").value,
+
+
+time:document.getElementById("time").value
+
+
+
+};
+
+
+
+if(!item.title || !item.date || !item.time){
+
+
+alert("Preencha todos os campos 💗");
+
+
+return;
+
+
 }
 
-function formatarData(data) {
-  const [y, m, d] = data.split("-");
-  return `${d}/${m}/${y}`;
+
+
+let dados=JSON.parse(localStorage.getItem("agenda")) || [];
+
+
+
+dados.push(item);
+
+
+
+localStorage.setItem(
+
+"agenda",
+
+JSON.stringify(dados)
+
+);
+
+
+
+carregarAgenda();
+
+
+
+document.getElementById("title").value="";
+
+
 }
 
-load();
+
+
+
+
+function remover(index){
+
+
+let dados=JSON.parse(localStorage.getItem("agenda")) || [];
+
+
+
+dados.splice(index,1);
+
+
+
+localStorage.setItem(
+
+"agenda",
+
+JSON.stringify(dados)
+
+);
+
+
+
+carregarAgenda();
+
+
+}
+
+
+
+
+
+
+function mostrarProximo(dados){
+
+
+
+let area=document.getElementById("next");
+
+
+
+if(dados.length===0){
+
+
+area.innerHTML="Nenhum compromisso marcado 💗";
+
+
+return;
+
+
+}
+
+
+
+
+let primeiro=dados[0];
+
+
+
+area.innerHTML=`
+
+<strong>
+
+${primeiro.title}
+
+</strong>
+
+<br>
+
+📅 ${dataCompleta(primeiro.date)}
+
+<br>
+
+⏰ ${primeiro.time}
+
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+function dataCompleta(data){
+
+
+const dias=[
+
+"Domingo",
+
+"Segunda-feira",
+
+"Terça-feira",
+
+"Quarta-feira",
+
+"Quinta-feira",
+
+"Sexta-feira",
+
+"Sábado"
+
+];
+
+
+
+let partes=data.split("-");
+
+
+let data=new Date(
+
+partes[0],
+
+partes[1]-1,
+
+partes[2]
+
+);
+
+
+
+return `${dias[data.getDay()]}, ${partes[2]}/${partes[1]}/${partes[0]}`;
+
+}
+
+
+
+function add(){
+
+adicionar();
+
+}
+
+
+
+carregarAgenda();
+
+
 </script>
 
+
 </body>
+
 </html>
