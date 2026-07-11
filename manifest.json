@@ -1,18 +1,18 @@
 {
-  "name": "Odontologia",
+  "name": "Odonto",
   "short_name": "Odonto",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#f7f7fb",
-  "theme_color": "#ff5f8f",
+  "background_color": "#F6F7FB",
+  "theme_color": "#E56793",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "Odonto.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icon-512.png",
+      "src": "Odonto.png",
       "sizes": "512x512",
       "type": "image/png"
     }
